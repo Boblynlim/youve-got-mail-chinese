@@ -138,7 +138,7 @@ export default function App() {
 
         {/* Code input content - styled like page 1 text */}
         <div
-          className="absolute flex flex-col font-['Times_Newer_Roman:Regular',sans-serif] leading-[24px] not-italic text-white tracking-[-1px] z-20 px-8"
+          className="absolute flex flex-col font-['Noto_Sans_SC',sans-serif] leading-[24px] not-italic text-white tracking-[-1px] z-20 px-8"
           style={{
             left: "50%",
             top: "20%",
@@ -146,6 +146,7 @@ export default function App() {
             maxWidth: "340px",
             transform: "translateX(-50%)",
             fontSize: "24px",
+            fontWeight: 500,
           }}
         >
           <p style={{ marginBottom: "6rem", textAlign: "left" }}>
@@ -217,7 +218,8 @@ export default function App() {
               padding: "1rem 2rem",
               borderRadius: ".5rem",
               fontSize: "20px",
-              fontFamily: "Times Newer Roman:Regular, sans-serif",
+              fontFamily: "Noto Sans SC, sans-serif",
+              fontWeight: 500,
               cursor: code.join("").length !== 6 ? "not-allowed" : "pointer",
               transition: "background-color 0.2s",
               marginTop: "4rem",
@@ -315,13 +317,14 @@ export default function App() {
 
       {/* Frame 1: Animated text - fades in */}
       <motion.div
-        className="absolute flex flex-col font-['Times_Newer_Roman:Regular',sans-serif] leading-[24px] not-italic text-white tracking-[-1px] z-20 px-8"
+        className="absolute flex flex-col font-['Noto_Sans_SC',sans-serif] leading-[24px] not-italic text-white tracking-[-1px] z-20 px-8"
         style={{
           left: "50%",
           top: "64px",
           width: "calc(100% - 6rem)",
           maxWidth: "340px",
           fontSize: "24px",
+          fontWeight: 500,
         }} // width: calc(100% - 4rem) = full width minus px-8 margins
         initial={{ opacity: 0, x: "-50%" }}
         animate={{ opacity: frame >= 2 ? 1 : 0, x: "-50%" }}
@@ -386,8 +389,8 @@ export default function App() {
 
       {/* Frame 4: Tap to read text - fades in */}
       <motion.div
-        className="absolute text-white text-center font-['Times_Newer_Roman:Regular',sans-serif] text-[20px] tracking-[-1px] z-30"
-        style={{ bottom: "60px", left: "50%" }} // Adjust position here (e.g., bottom: "80px", top: "500px")
+        className="absolute text-white text-center font-['Noto_Sans_SC',sans-serif] text-[20px] tracking-[-1px] z-30"
+        style={{ bottom: "60px", left: "50%", fontWeight: 500 }} // Adjust position here (e.g., bottom: "80px", top: "500px")
         initial={{ opacity: 0, x: "-50%" }}
         animate={{ opacity: frame >= 4 ? 1 : 0, x: "-50%" }}
         transition={{ duration: 0.8, ease: gentleEasing }}
