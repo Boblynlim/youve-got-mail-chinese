@@ -149,7 +149,7 @@ export default function App() {
           }}
         >
           <p style={{ marginBottom: "6rem", textAlign: "left" }}>
-            输入你手机号码的最后6位数字来打开你的信：
+            请输入你手机号码的最后6位数字来打开你的信：
           </p>
 
           {/* 6 input boxes */}
@@ -327,11 +327,11 @@ export default function App() {
         animate={{ opacity: frame >= 2 ? 1 : 0, x: "-50%" }}
         transition={{ duration: 0.8, ease: gentleEasing }}
       >
-        <p className="mb-0">{`嗨！`}</p>
+        <p className="mb-0">{`你好！`}</p>
         <p className="mb-0">&nbsp;</p>
         <p className="mb-0">{`你有新邮件`}</p>
         <p className="mb-0">&nbsp;</p>
-        <p className="mb-0">{`jaz 有太多想法不吐不快，所以这里有一封关于你的信！:-)`}</p>
+        <p className="mb-0">{`jazlyn (妍删) 有话想跟你说， 就寄你一封信！:-)`}</p>
       </motion.div>
 
       {/* Frame 2: Closed envelope - slides up from bottom */}
@@ -392,7 +392,7 @@ export default function App() {
         animate={{ opacity: frame >= 4 ? 1 : 0, x: "-50%" }}
         transition={{ duration: 0.8, ease: gentleEasing }}
       >
-        <p className="mb-0">点击阅读</p>
+        <p className="mb-0">打开信件</p>
       </motion.div>
 
       {/* Full screen clickable overlay - appears when tap to read is visible */}
