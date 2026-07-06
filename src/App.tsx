@@ -4,7 +4,7 @@ import imgBackground from "./assets/background.png";
 import imgEnvelope from "./assets/envelope.png";
 import imgOpenEnvelope from "./assets/open_envelope.png";
 import imgNote from "./assets/note.png";
-import { supabase } from "./supabaseClient";
+import { convex, getByCode } from "./convexClient";
 import BackButton from "./components/BackButton";
 
 export default function App() {
@@ -135,14 +135,10 @@ export default function App() {
       const enteredCode = code.join("");
 
       if (enteredCode.length === 6) {
-        // Check if code exists in Supabase database
-        const { data, error: dbError } = await supabase
-          .from("letters")
-          .select("message")
-          .eq("code", enteredCode)
-          .single();
+        // Look up the letter in Convex by access code (shared deployment)
+        const data = await convex.query(getByCode, { code: enteredCode });
 
-        if (dbError || !data) {
+        if (!data) {
           setError("验证码错误，请重试。");
         } else {
           setLetterContent(data.message);
