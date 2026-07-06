@@ -14,6 +14,35 @@ export default function App() {
   const [letterContent, setLetterContent] = useState("");
   const [error, setError] = useState("");
 
+  // Helper function to render text with different font sizes for Chinese characters
+  const renderMixedText = (text: string) => {
+    // Regex to match Chinese characters along with adjacent punctuation and emojis
+    // Only matches sequences that contain at least one Chinese character
+    const chineseRegex =
+      /([\u4e00-\u9fff\u3400-\u4dbf\uf900-\ufaff][\u4e00-\u9fff\u3400-\u4dbf\uf900-\ufaff\s\.,;:!?()'""\-–—…、。，！？；：""''（）【】《》\u1f300-\u1f9ff\u2600-\u26ff\u2700-\u27bf]*)/g;
+    const parts = text.split(chineseRegex);
+
+    return parts.map((part, index) => {
+      // Check if this part contains Chinese characters
+      if (part && /[\u4e00-\u9fff\u3400-\u4dbf\uf900-\ufaff]/.test(part)) {
+        return (
+          <span
+            key={index}
+            style={{
+              fontSize: "20px",
+              fontFamily: "'Noto Sans SC', sans-serif",
+              fontWeight: 400,
+              letterSpacing: "0px",
+            }}
+          >
+            {part}
+          </span>
+        );
+      }
+      return part;
+    });
+  };
+
   useEffect(() => {
     // Frame 1 to Frame 2 after 400ms delay
     const timer1 = setTimeout(() => {
@@ -146,7 +175,7 @@ export default function App() {
             maxWidth: "340px",
             transform: "translateX(-50%)",
             fontSize: "24px",
-            fontWeight: 500,
+            fontWeight: 400,
           }}
         >
           <p style={{ marginBottom: "6rem", textAlign: "left" }}>
@@ -219,7 +248,7 @@ export default function App() {
               borderRadius: ".5rem",
               fontSize: "20px",
               fontFamily: "Noto Sans SC, sans-serif",
-              fontWeight: 500,
+              fontWeight: 400,
               cursor: code.join("").length !== 6 ? "not-allowed" : "pointer",
               transition: "background-color 0.2s",
               marginTop: "4rem",
@@ -288,16 +317,18 @@ export default function App() {
           <p
             className="text-center"
             style={{
-              fontSize: "clamp(1.5rem, calc(8rem - 5.5vw), 4.5rem)",
+              fontSize: "clamp(4rem, calc(8rem - 5.5vw), 6.75rem)",
               fontFamily: "'Jazs Handwriting', sans-serif",
-              lineHeight: ".5",
-              letterSpacing: "-0.05em",
+              lineHeight: ".4",
+              letterSpacing: "-0.06em",
               color: "#484B7F",
               padding: "8px",
               whiteSpace: "pre-wrap",
             }}
           >
-            {letterContent || "你的消息将显示在这里"}
+            {letterContent
+              ? renderMixedText(letterContent)
+              : "你的消息将显示在这里"}
           </p>
         </div>
       </div>
@@ -324,7 +355,7 @@ export default function App() {
           width: "calc(100% - 6rem)",
           maxWidth: "340px",
           fontSize: "24px",
-          fontWeight: 500,
+          fontWeight: 400,
         }} // width: calc(100% - 4rem) = full width minus px-8 margins
         initial={{ opacity: 0, x: "-50%" }}
         animate={{ opacity: frame >= 2 ? 1 : 0, x: "-50%" }}
@@ -390,7 +421,7 @@ export default function App() {
       {/* Frame 4: Tap to read text - fades in */}
       <motion.div
         className="absolute text-white text-center font-['Noto_Sans_SC',sans-serif] text-[20px] tracking-[-1px] z-30"
-        style={{ bottom: "60px", left: "50%", fontWeight: 500 }} // Adjust position here (e.g., bottom: "80px", top: "500px")
+        style={{ bottom: "60px", left: "50%", fontWeight: 400 }} // Adjust position here (e.g., bottom: "80px", top: "500px")
         initial={{ opacity: 0, x: "-50%" }}
         animate={{ opacity: frame >= 4 ? 1 : 0, x: "-50%" }}
         transition={{ duration: 0.8, ease: gentleEasing }}
